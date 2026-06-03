@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Transaction</title>
+</head>
+<body>
+
+<h2>Edit Transaction</h2>
+
+<form method="POST">
+
+    <input type="text"
+           name="title"
+           value="{{ transaction[2] }}"
+           required>
+
+    <br><br>
+
+    <input type="number"
+           name="amount"
+           value="{{ transaction[3] }}"
+           required>
+
+    <br><br>
+    <br><br>
+
+<select name="type">
+    <option value="Income"
+        {% if transaction[4] == 'Income' %}selected{% endif %}>
+        Income
+    </option>
+
+    <option value="Expense"
+        {% if transaction[4] == 'Expense' %}selected{% endif %}>
+        Expense
+    </option>
+</select>
+
+<br><br>
+
+<select name="category">
+
+    <option value="Food"
+        {% if transaction[5] == 'Food' %}selected{% endif %}>
+        Food
+    </option>
+
+    <option value="Travel"
+        {% if transaction[5] == 'Travel' %}selected{% endif %}>
+        Travel
+    </option>
+
+    <option value="Shopping"
+        {% if transaction[5] == 'Shopping' %}selected{% endif %}>
+        Shopping
+    </option>
+
+    <option value="Bills"
+        {% if transaction[5] == 'Bills' %}selected{% endif %}>
+        Bills
+    </option>
+
+    <option value="Other"
+        {% if transaction[5] == 'Other' %}selected{% endif %}>
+        Other
+    </option>
+
+</select>
+
+    <button type="submit">
+        Update
+    </button>
+
+</form>
+
+</body>
+</html>

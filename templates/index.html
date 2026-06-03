@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Expense Tracker Pro</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+    <div class="beta-banner">
+    🚧 Beta Version - Feedback Welcome
+</div>
+    <h1>💰 Expense Tracker Pro</h1>
+
+    <div>
+
+        <span>
+            Welcome {{ username }}
+        </span>
+
+        <a href="/logout" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>₹{{ balance }}</h2>
+            <p>Balance</p>
+        </div>
+
+        <div class="card income">
+            <h2>₹{{ income }}</h2>
+            <p>Income</p>
+        </div>
+
+        <div class="card expense">
+            <h2>₹{{ expense }}</h2>
+            <p>Expense</p>
+        </div>
+
+    </div>
+    <form method="GET" action="/" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="🔍 Search by Title or Category"
+        value="{{ search }}">
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+    <form action="/add" method="POST">
+
+        <input type="text"
+               name="title"
+               placeholder="Title"
+               required>
+
+        <input type="number"
+               step="0.01"
+               name="amount"
+               placeholder="Amount"
+               required>
+
+        <select name="type">
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+        </select>
+
+        <select name="category">
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Other</option>
+        </select>
+
+        <button type="submit">Add</button>
+
+    </form>
+    <div style="margin-top:15px; margin-bottom:20px;">
+
+<a href="/export" class="export-btn">
+📥 Export Excel Report
+</a>
+
+</div>
+
+    <h2>📊 Expense Analytics</h2>
+
+    <div class="analytics">
+
+        {% for item in category_data %}
+
+        <div class="analytics-card">
+
+            <strong>{{ item[0] }}</strong>
+
+            <br><br>
+
+            ₹{{ item[1] }}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="chart-box">
+        <canvas id="expenseChart"></canvas>
+    </div>
+
+    <h2>📅 Monthly Report</h2>
+
+    <div class="monthly-report">
+
+        {% for item in monthly_report %}
+
+        <div class="report-card">
+
+            <h3>{{ item[0] }}</h3>
+
+            <p>₹{{ item[1] }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <h2>📝 Recent Transactions</h2>
+
+<div class="transaction transaction-header">
+    <span>Sr No</span>
+    <span>Title</span>
+    <span>Category</span>
+    <span>Amount</span>
+    <span>Date</span>
+    <span>Type</span>
+    <span>Action</span>
+</div>
+
+{% for item in transactions %}
+
+<div class="transaction">
+
+    <span>{{ loop.index }}</span>
+
+    <span>{{ item[2] }}</span>
+
+    <span>{{ item[5] }}</span>
+
+    <span>₹{{ item[3] }}</span>
+
+    <span>{{ item[6] }}</span>
+
+    <span>{{ item[4] }}</span>
+
+    <span class="action-buttons">
+    <a href="/edit/{{ item[0] }}" class="edit-btn">✏️</a>
+    <a href="/delete/{{ item[0] }}" class="delete-btn">🗑️</a>
+</span>
+</div>
+
+{% endfor %}
+
+<script>
+
+const labels = [
+{% for item in category_data %}
+"{{ item[0] }}",
+{% endfor %}
+];
+
+const values = [
+{% for item in category_data %}
+{{ item[1] }},
+{% endfor %}
+];
+
+const total = values.length
+    ? values.reduce((a, b) => a + b, 0)
+    : 0;
+
+new Chart(
+    document.getElementById("expenseChart"),
+    {
+        type: "pie",
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                data: values
+            }]
+        },
+
+        plugins: [ChartDataLabels],
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+                    position: "top"
+                },
+
+                datalabels: {
+
+                    color: "#ffffff",
+
+                    font: {
+                        weight: "bold",
+                        size: 16
+                    },
+
+                    formatter: (value) => {
+
+                        if(total === 0){
+                            return "0%";
+                        }
+
+                        const percentage =
+                            ((value / total) * 100).toFixed(1);
+
+                        return percentage + "%";
+                    }
+                }
+            }
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>
