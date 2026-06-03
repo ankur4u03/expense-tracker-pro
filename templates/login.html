@@ -1,7 +1,10 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login - Premium Expense Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Pro</title>
 
     <style>
         *{
@@ -16,16 +19,28 @@
             display:flex;
             justify-content:center;
             align-items:center;
-            height:100vh;
+            min-height:100vh;
         }
 
         .login-box{
             background:#1e293b;
-            width:380px;
+            width:400px;
             padding:30px;
             border-radius:15px;
             text-align:center;
-            box-shadow:0 0 20px rgba(0,0,0,0.4);
+            box-shadow:0 0 25px rgba(0,0,0,0.4);
+        }
+
+        .logo{
+            color:white;
+            font-size:30px;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#cbd5e1;
+            margin-bottom:20px;
+            font-size:14px;
         }
 
         .beta-banner{
@@ -48,6 +63,7 @@
             margin-bottom:15px;
             border:none;
             border-radius:8px;
+            outline:none;
         }
 
         button{
@@ -59,60 +75,76 @@
             color:white;
             font-size:16px;
             cursor:pointer;
+            transition:0.3s;
         }
 
         button:hover{
             background:#1d4ed8;
         }
 
+        .bottom-text{
+            margin-top:20px;
+            color:white;
+        }
+
         a{
             color:#60a5fa;
             text-decoration:none;
+            font-weight:bold;
         }
 
-        .bottom-text{
-            margin-top:15px;
-            color:white;
+        a:hover{
+            text-decoration:underline;
         }
     </style>
 </head>
 
 <body>
 
-<div class="login-box">
+    <div class="login-box">
 
-    <div class="beta-banner">
-        🚧 Website Under Development <br>
-        Beta Testing Version
+        <h1 class="logo">💰 Expense Tracker Pro</h1>
+
+        <p class="subtitle">
+            Manage Your Expenses Smartly
+        </p>
+
+        <div class="beta-banner">
+            🚧 Website Under Development<br>
+            Beta Testing Version
+        </div>
+
+        <h2>Login</h2>
+
+        <form method="POST">
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <div class="bottom-text">
+            Don't have an account?
+            <br><br>
+            <a href="/register">Create Account</a>
+        </div>
+
     </div>
-
-    <h2>Login</h2>
-
-    <form method="POST">
-
-        <input type="email"
-               name="email"
-               placeholder="Enter Email"
-               required>
-
-        <input type="password"
-               name="password"
-               placeholder="Enter Password"
-               required>
-
-        <button type="submit">
-            Login
-        </button>
-
-    </form>
-
-    <div class="bottom-text">
-        Don't have an account?
-        <br><br>
-        <a href="/register">Create Account</a>
-    </div>
-
-</div>
 
 </body>
 </html>
