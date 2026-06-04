@@ -401,8 +401,8 @@ def login():
 
             return redirect("/")
 
-            flash("❌ Invalid Email Or Password")
-    return redirect("/login")
+        flash("❌ Invalid Email Or Password")
+        return render_template("login.html")
 
     return render_template("login.html")
 
@@ -520,7 +520,7 @@ def change_password():
         conn.close()
 
         flash("✅ Password Changed Successfully")
-        
+
         return redirect("/profile")
 
     return render_template(
