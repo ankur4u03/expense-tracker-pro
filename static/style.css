@@ -293,3 +293,47 @@ grid-template-columns:1fr;
 .change-btn:hover{
     background:#d97706;
 }
+.profile-card{
+    max-width:600px;
+    margin:50px auto;
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+}
+
+.password-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.password-form label{
+    font-weight:bold;
+}
+
+.password-form input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+}
+
+.save-btn{
+    background:#22c55e;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.back-btn{
+    display:block;
+    margin-top:15px;
+    text-align:center;
+    background:#3b82f6;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+}
