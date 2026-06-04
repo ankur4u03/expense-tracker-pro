@@ -2,101 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker Pro</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
-
-        body{
-            background:#0f172a;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-        }
-
-        .login-box{
-            background:#1e293b;
-            width:400px;
-            padding:30px;
-            border-radius:15px;
-            text-align:center;
-            box-shadow:0 0 25px rgba(0,0,0,0.4);
-        }
-
-        .logo{
-            color:white;
-            font-size:30px;
-            margin-bottom:10px;
-        }
-
-        .subtitle{
-            color:#cbd5e1;
-            margin-bottom:20px;
-            font-size:14px;
-        }
-
-        .beta-banner{
-            background:#f59e0b;
-            color:#000;
-            padding:10px;
-            border-radius:10px;
-            font-weight:bold;
-            margin-bottom:20px;
-        }
-
-        h2{
-            color:white;
-            margin-bottom:20px;
-        }
-
-        input{
-            width:100%;
-            padding:12px;
-            margin-bottom:15px;
-            border:none;
-            border-radius:8px;
-            outline:none;
-        }
-
-        button{
-            width:100%;
-            padding:12px;
-            border:none;
-            border-radius:8px;
-            background:#2563eb;
-            color:white;
-            font-size:16px;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        button:hover{
-            background:#1d4ed8;
-        }
-
-        .bottom-text{
-            margin-top:20px;
-            color:white;
-        }
-
-        a{
-            color:#60a5fa;
-            text-decoration:none;
-            font-weight:bold;
-        }
-
-        a:hover{
-            text-decoration:underline;
-        }
-    </style>
 </head>
 
 <body>
