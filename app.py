@@ -180,17 +180,28 @@ def home():
 
     balance = income - expense
 
-    return render_template(
-        "index.html",
-        transactions=transactions,
-        income=income,
-        expense=expense,
-        balance=balance,
-        category_data=category_data,
-        monthly_report=monthly_report,
-        search=search,
-        username=session.get("username")
+    cur = sqlite3.connect("expense.db").cursor()
+
+    cur.execute(
+    "SELECT name FROM users WHERE id=?",
+    (session["user_id"],)
     )
+
+    user = cur.fetchone()
+
+    username = user[0]
+
+    return render_template(
+    "index.html",
+    transactions=transactions,
+    income=income,
+    expense=expense,
+    balance=balance,
+    category_data=category_data,
+    monthly_report=monthly_report,
+    search=search,
+    username=username
+)
     
 # ==========================
 # ADD TRANSACTION
