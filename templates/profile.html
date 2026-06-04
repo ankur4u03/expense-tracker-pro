@@ -69,6 +69,14 @@
     border-radius:10px;
     text-decoration:none;
 }
+.flash-success{
+    background:#22c55e;
+    color:white;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
     </style>
 </head>
 
@@ -81,13 +89,13 @@
         <h2>👤 My Profile</h2>
 
         {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="flash-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+{% if messages %}
+    {% for message in messages %}
+        <div id="flash-message" class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 {% endwith %}
 
         <div class="profile-item">
@@ -117,6 +125,13 @@
     </div>
 
 </div>
-
+<script>
+setTimeout(function(){
+    let flash = document.getElementById("flash-message");
+    if(flash){
+        flash.style.display = "none";
+    }
+}, 3000);
+</script>
 </body>
 </html>
