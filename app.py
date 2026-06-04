@@ -464,6 +464,56 @@ def edit_profile():
         username=user[0],
         email=user[1]
     )
+@app.route("/change-password", methods=["GET", "POST"])
+def change_password():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    if request.method == "POST":
+
+        current_password = request.form["current_password"]
+        new_password = request.form["new_password"]
+        confirm_password = request.form["confirm_password"]
+
+        conn = sqlite3.connect("expense.db")
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT password FROM users WHERE id=?",
+            (session["user_id"],)
+        )
+
+        user = cursor.fetchone()
+
+        if not check_password_hash(
+            user[0],
+            current_password
+        ):
+            conn.close()
+            return "Current Password Incorrect"
+
+        if new_password != confirm_password:
+            conn.close()
+            return "Passwords Do Not Match"
+
+        hashed_password = generate_password_hash(
+            new_password
+        )
+
+        cursor.execute(
+            "UPDATE users SET password=? WHERE id=?",
+            (hashed_password, session["user_id"])
+        )
+
+        conn.commit()
+        conn.close()
+
+        return redirect("/profile")
+
+    return render_template(
+        "change_password.html"
+    )
 # ==========================
 # LOGOUT
 # ==========================
