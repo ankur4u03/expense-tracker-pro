@@ -198,6 +198,26 @@ grid-template-columns:1fr;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.top-left{
+    flex:1;
+}
+
+.top-center{
+    flex:1;
+    text-align:center;
+}
+
+.top-right{
+    flex:1;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
 }
 
 .logout-btn{
@@ -211,9 +231,44 @@ grid-template-columns:1fr;
 .beta-banner{
     background:#f59e0b;
     color:#000;
-    text-align:center;
-    padding:10px;
+    padding:10px 15px;
     border-radius:10px;
     font-weight:bold;
-    margin-bottom:15px;
+    display:inline-block;
+    margin-bottom:0;
+}
+.profile-btn{
+    background:#3b82f6;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+}
+@media(max-width:768px){
+
+    .top-bar{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .top-right{
+        justify-content:center;
+    }
+
+}
+.top-center h1{
+    margin-bottom:0;
+}
+
+.top-right span{
+    white-space:nowrap;
+}
+
+.top-right{
+    flex:1;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
 }

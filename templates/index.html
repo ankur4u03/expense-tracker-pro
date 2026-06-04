@@ -16,23 +16,27 @@
 <div class="container">
 
     <div class="top-bar">
-    <div class="beta-banner">
-    🚧 Beta Version - Feedback Welcome
-</div>
-    <h1>💰 Expense Tracker Pro</h1>
 
-    <div>
+    <div class="top-left">
+        <div class="beta-banner">
+            🚧 Beta Version - Feedback Welcome
+        </div>
+    </div>
 
-        <span>
-            Welcome {{ username }}
-        </span>
-        <a href="/profile" class="logout-btn" style="background:#2563eb;">
+    <div class="top-center">
+        <h1>💰 Expense Tracker Pro</h1>
+    </div>
+
+    <div class="top-right">
+        <span>Welcome {{ username }}</span>
+
+        <a href="/profile" class="profile-btn">
             Profile
         </a>
+
         <a href="/logout" class="logout-btn">
             Logout
         </a>
-
     </div>
 
 </div>
