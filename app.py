@@ -427,6 +427,46 @@ def edit_profile():
 @app.route("/change-password")
 def change_password():
     return "Change Password Page Coming Soon"
+@app.route("/edit-profile", methods=["GET", "POST"])
+def edit_profile():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    conn = sqlite3.connect("expense.db")
+    cursor = conn.cursor()
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+
+        cursor.execute(
+            "UPDATE users SET name=? WHERE id=?",
+            (username, session["user_id"])
+        )
+
+        conn.commit()
+
+        session["username"] = username
+
+        conn.close()
+
+        return redirect("/profile")
+
+    cursor.execute(
+        "SELECT name, email FROM users WHERE id=?",
+        (session["user_id"],)
+    )
+
+    user = cursor.fetchone()
+
+    conn.close()
+
+    return render_template(
+        "edit_profile.html",
+        username=user[0],
+        email=user[1]
+    )
 # ==========================
 # LOGOUT
 # ==========================

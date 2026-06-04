@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="profile-card">
+
+    <h2>✏️ Edit Profile</h2>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="username"
+            value="{{ username }}"
+            required>
+
+        <input
+            type="email"
+            value="{{ email }}"
+            readonly>
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+    </form>
+
+    <a href="/profile" class="back-btn">
+        ← Back
+    </a>
+
+</div>
+
+</body>
+</html>
