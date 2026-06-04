@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, send_file,session,flash
-import sqlite3
+import sqlite3 
 import pandas as pd
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
@@ -33,6 +34,16 @@ def init_db():
         name TEXT,
         email TEXT UNIQUE,
         password TEXT
+    )
+    """)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS login_logs(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        username TEXT,
+        email TEXT,
+        login_time TEXT,
+        ip_address TEXT
     )
     """)
 
@@ -389,19 +400,43 @@ def login():
 
         user = cur.fetchone()
 
-        conn.close()
-
         if user and check_password_hash(
             user[3],
             password
         ):
 
+            ip = request.headers.get(
+                "X-Forwarded-For",
+                request.remote_addr
+            )
+
+            cur.execute(
+                """
+                INSERT INTO login_logs
+                (user_id, username, email, login_time, ip_address)
+                VALUES (?, ?, ?, datetime('now'), ?)
+                """,
+                (
+                    user[0],
+                    user[1],
+                    user[2],
+                    ip
+                )
+            )
+
+            conn.commit()
+
             session["user_id"] = user[0]
             session["username"] = user[1]
 
+            conn.close()
+
             return redirect("/")
 
+        conn.close()
+
         flash("❌ Invalid Email Or Password")
+
         return render_template("login.html")
 
     return render_template("login.html")
