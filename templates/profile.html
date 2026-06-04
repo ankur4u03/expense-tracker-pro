@@ -47,6 +47,28 @@
             border-radius:10px;
             text-decoration:none;
         }
+        .profile-actions{
+    margin-top:20px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.edit-profile-btn{
+    background:#3b82f6;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    text-decoration:none;
+}
+
+.change-password-btn{
+    background:#f59e0b;
+    color:black;
+    padding:10px 15px;
+    border-radius:10px;
+    text-decoration:none;
+}
     </style>
 </head>
 
@@ -67,6 +89,18 @@
             <div class="profile-label">Email</div>
             <div class="profile-value">{{ email }}</div>
         </div>
+
+        <div class="profile-actions">
+
+    <a href="/edit-profile" class="edit-profile-btn">
+        ✏️ Edit Profile
+    </a>
+
+    <a href="/change-password" class="change-password-btn">
+        🔒 Change Password
+    </a>
+
+</div>
 
         <a href="/" class="back-btn">← Back to Dashboard</a>
 

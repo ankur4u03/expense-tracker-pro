@@ -419,6 +419,14 @@ def profile():
         username=user[0],
         email=user[1]
     )
+@app.route("/edit-profile")
+def edit_profile():
+    return "Edit Profile Page Coming Soon"
+
+
+@app.route("/change-password")
+def change_password():
+    return "Change Password Page Coming Soon"
 # ==========================
 # LOGOUT
 # ==========================
