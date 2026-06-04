@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, send_file,session
+from flask import Flask, render_template, request, redirect, send_file,session,flash
 import sqlite3
 import pandas as pd
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -401,7 +401,8 @@ def login():
 
             return redirect("/")
 
-        return "Invalid Email or Password"
+            flash("❌ Invalid Email Or Password")
+    return redirect("/login")
 
     return render_template("login.html")
 
@@ -498,11 +499,13 @@ def change_password():
             current_password
         ):
             conn.close()
-            return "Current Password Incorrect"
+            flash("❌ Current Password Incorrect")
+        return render_template("change_password.html")
 
         if new_password != confirm_password:
             conn.close()
-            return "Passwords Do Not Match"
+            flash("❌ Passwords Do Not Match")
+            return render_template("change_password.html")
 
         hashed_password = generate_password_hash(
             new_password
@@ -516,6 +519,8 @@ def change_password():
         conn.commit()
         conn.close()
 
+        flash("✅ Password Changed Successfully")
+        
         return redirect("/profile")
 
     return render_template(

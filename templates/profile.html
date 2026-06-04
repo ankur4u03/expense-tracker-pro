@@ -80,6 +80,16 @@
 
         <h2>👤 My Profile</h2>
 
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="flash-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
         <div class="profile-item">
             <div class="profile-label">Username</div>
             <div class="profile-value">{{ username }}</div>

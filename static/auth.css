@@ -98,3 +98,22 @@ color:#60a5fa;
 text-decoration:none;
 font-weight:bold;
 }
+.flash-error{
+    background:#ff4d4d;
+    color:white;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:600;
+}
+
+.flash-success{
+    background:#00c853;
+    color:white;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:600;
+}
