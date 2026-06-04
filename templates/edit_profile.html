@@ -4,67 +4,65 @@
 <head>
     <title>Edit Profile - Expense Tracker Pro</title>
 
-```
+
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 <style>
 
-    .profile-card{
-        max-width:600px;
-        margin:50px auto;
-        background:#1e293b;
-        padding:30px;
-        border-radius:15px;
-    }
+    <style>
 
-    .profile-card h2{
-        text-align:center;
-        margin-bottom:25px;
-    }
+.profile-card{
+    max-width:600px;
+    margin:50px auto;
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+}
 
-    .profile-item{
-        margin-bottom:15px;
-    }
+.profile-card form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
 
-    .profile-item label{
-        display:block;
-        margin-bottom:8px;
-        color:#94a3b8;
-    }
+.profile-item{
+    width:100%;
+}
 
-    .profile-item input{
-        width:100%;
-        padding:12px;
-        border:none;
-        border-radius:10px;
-        background:#0f172a;
-        color:white;
-    }
+.profile-item input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#0f172a;
+    color:white;
+}
 
-    .save-btn{
-        display:inline-block;
-        background:#22c55e;
-        color:white;
-        padding:12px 20px;
-        border:none;
-        border-radius:10px;
-        cursor:pointer;
-        font-weight:bold;
-        margin-top:10px;
-    }
+.save-btn{
+    width:100%;
+    background:#22c55e;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-    .back-btn{
-        display:inline-block;
-        margin-top:15px;
-        background:#3b82f6;
-        color:white;
-        padding:12px 20px;
-        border-radius:10px;
-        text-decoration:none;
-    }
+.back-btn{
+    display:block;
+    margin-top:15px;
+    text-align:center;
+    background:#3b82f6;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+}
 
 </style>
-```
+
+</style>
 
 </head>
 
@@ -72,7 +70,6 @@
 
 <div class="container">
 
-```
 <div class="profile-card">
 
     <h2>✏️ Edit Profile</h2>
@@ -111,7 +108,6 @@
     </a>
 
 </div>
-```
 
 </div>
 
