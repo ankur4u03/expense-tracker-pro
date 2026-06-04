@@ -499,13 +499,22 @@ def change_password():
             current_password
         ):
             conn.close()
+
             flash("❌ Current Password Incorrect")
-        return render_template("change_password.html")
+
+            return render_template(
+                "change_password.html"
+            )
 
         if new_password != confirm_password:
+
             conn.close()
+
             flash("❌ Passwords Do Not Match")
-            return render_template("change_password.html")
+
+            return render_template(
+                "change_password.html"
+            )
 
         hashed_password = generate_password_hash(
             new_password
@@ -526,6 +535,7 @@ def change_password():
     return render_template(
         "change_password.html"
     )
+
 # ==========================
 # LOGOUT
 # ==========================
