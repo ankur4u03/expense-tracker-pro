@@ -382,3 +382,29 @@ grid-template-columns:1fr;
     }
 
 }
+@media (max-width:768px){
+
+.transaction,
+.transaction-header{
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: left;
+}
+
+.transaction span,
+.transaction-header span{
+    display:block;
+    width:100%;
+    text-align:left;
+}
+
+.action-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.container{
+    overflow-x:hidden;
+}
+
+}
