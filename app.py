@@ -404,13 +404,15 @@ def profile():
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT username,email FROM users WHERE id=?",
+        "SELECT name,email FROM users WHERE id=?",
         (session["user_id"],)
     )
 
     user = cursor.fetchone()
-
     conn.close()
+
+    if not user:
+        return redirect("/login")
 
     return render_template(
         "profile.html",
