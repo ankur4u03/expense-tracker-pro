@@ -420,10 +420,6 @@ def profile():
         email=user[1]
     )
 
-
-@app.route("/change-password")
-def change_password():
-    return "Change Password Page Coming Soon"
 @app.route("/edit-profile", methods=["GET", "POST"])
 def edit_profile():
 
