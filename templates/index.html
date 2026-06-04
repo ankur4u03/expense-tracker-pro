@@ -167,17 +167,12 @@
 
 <div class="transaction">
 
-    <span>{{ loop.index }}</span>
-
-    <span>{{ item[2] }}</span>
-
-    <span>{{ item[5] }}</span>
-
-    <span>₹{{ item[3] }}</span>
-
-    <span>{{ item[6] }}</span>
-
-    <span>{{ item[4] }}</span>
+    <span><strong>Sr No:</strong> {{ loop.index }}</span>
+    <span><strong>Title:</strong> {{ item[2] }}</span>
+    <span><strong>Category:</strong> {{ item[5] }}</span>
+    <span><strong>Amount:</strong> ₹{{ item[3] }}</span>
+    <span><strong>Date:</strong> {{ item[6] }}</span>
+    <span><strong>Type:</strong> {{ item[4] }}</span>
 
     <span class="action-buttons">
     <a href="/edit/{{ item[0] }}" class="edit-btn">✏️</a>
