@@ -494,6 +494,10 @@ def change_password():
 
         user = cursor.fetchone()
 
+        print("USER ID:", session["user_id"])
+        print("OLD HASH:", user[0])
+        print("CURRENT PASSWORD ENTERED:", current_password)
+
         if not check_password_hash(
             user[0],
             current_password
@@ -526,6 +530,14 @@ def change_password():
         )
 
         conn.commit()
+
+        cursor.execute(
+            "SELECT password FROM users WHERE id=?",
+            (session["user_id"],)
+        )
+
+        print("UPDATED HASH:", cursor.fetchone()[0])
+
         conn.close()
 
         flash("✅ Password Changed Successfully")
