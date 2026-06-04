@@ -57,7 +57,7 @@ init_db()
 # HOME
 # ==========================
 
-@app.route("/")
+@app.route("/dashboard")
 def home():
 
     if "user_id" not in session:
@@ -213,6 +213,9 @@ def home():
     search=search,
     username=username
 )
+@app.route("/")
+def landing():
+    return render_template("home.html")
     
 # ==========================
 # ADD TRANSACTION
@@ -250,7 +253,7 @@ def add():
     conn.commit()
     conn.close()
 
-    return redirect("/")
+    return redirect("/dashboard")
 
 
 # ==========================
@@ -271,7 +274,7 @@ def delete(id):
     conn.commit()
     conn.close()
 
-    return redirect("/")
+    return redirect("/dashboard")
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
@@ -295,7 +298,7 @@ def edit(id):
         conn.commit()
         conn.close()
 
-        return redirect("/")
+        return redirect("/dashboard")
 
     cur.execute(
         "SELECT * FROM transactions WHERE id=?",
@@ -431,7 +434,7 @@ def login():
 
             conn.close()
 
-            return redirect("/")
+            return redirect("/dashboard")
 
         conn.close()
 
