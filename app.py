@@ -394,7 +394,29 @@ def login():
 
     return render_template("login.html")
 
+@app.route("/profile")
+def profile():
 
+    if "user_id" not in session:
+        return redirect("/login")
+
+    conn = sqlite3.connect("expense.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT username,email FROM users WHERE id=?",
+        (session["user_id"],)
+    )
+
+    user = cursor.fetchone()
+
+    conn.close()
+
+    return render_template(
+        "profile.html",
+        username=user[0],
+        email=user[1]
+    )
 # ==========================
 # LOGOUT
 # ==========================
